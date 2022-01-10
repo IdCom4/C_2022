@@ -3,7 +3,7 @@
 #define TRUE 1
 #define FALSE 0
 
-void ft_printstr(char *str);
+void ft_putstr(char *str);
 
 char ft_is_corner(int x, int y, int width, int height) {
 
@@ -41,7 +41,7 @@ void ft_colle(int width, int height) {
 
   str[(width + height) * height] = '\0';
 
-  ft_printstr(str);
+  ft_putstr(str);
 
   free(str);
 

@@ -1,9 +1,7 @@
-#include <stdlib.h>
-
 #define TRUE 1
 #define FALSE 0
 
-void ft_putstr(char *str);
+void ft_putchar(char c);
 
 int ft_is_corner(int x, int y, int width, int height) {
 
@@ -16,28 +14,18 @@ int ft_is_corner(int x, int y, int width, int height) {
 
 void ft_colle(int width, int height) {
 
-  char *str = malloc(sizeof(char) * ((width + height) * height + 1));
-
-  if (str == NULL) return;
-
   for (int y = 0; y < height; y++) {
     for (int x = 0; x < width; x++) {
       if (ft_is_corner(x, y, width, height) == TRUE)
-        str[(width + 1) * y + x] = 'o';
+        ft_putchar('o');
       else if (y == 0 || y == height - 1)
-        str[(width + 1) * y + x] = '-';
+        ft_putchar('-');
       else if (x == 0 || x == width - 1)
-        str[(width + 1) * y + x] = '|';
+        ft_putchar('|');
       else
-        str[(width + 1) * y + x] = ' ';
+        ft_putchar(' ');
     }
-    str[(width + 1) * y + width] = '\n';
+    ft_putchar('\n');
   }
-
-  str[(width + height) * height] = '\0';
-
-  ft_putstr(str);
-
-  free(str);
 
 }

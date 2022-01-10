@@ -15,7 +15,7 @@ SHELL := /bin/bash
 # DIRS
 COMMON_DIR = ../common/
 # COMMON FILES
-SRCS += $(COMMON_DIR)/ft_printstr.c
+SRCS += $(COMMON_DIR)/ft_putstr.c
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
