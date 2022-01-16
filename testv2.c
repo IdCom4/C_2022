@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 # define FALSE 0
 # define TRUE 1
 # define ALL -1
@@ -74,7 +73,7 @@ int		ft_strichr(const char *s, const unsigned char c)
 	return (-1);
 }
 
-static int  ft_countwords(char const *str, char *delimiters) {
+/*static int  ft_countwords(char const *str, char *delimiters) {
   int nbrWords = 0;
 
   for (int i = 0; str[i] != '\0'; i++) {
@@ -91,40 +90,86 @@ static int  ft_countwords(char const *str, char *delimiters) {
   }
 
   return nbrWords;
+}*/
+
+typedef struct split_list {
+	char			*str;
+	struct split_list	*next;
+} t_split_list;
+
+void  ft_freelist(t_split_list *head, int freeContent) {
+  while (head != NULL) {
+  
+    t_split_list *next = head->next;
+
+    if (freeContent == TRUE && head->str)
+      free(head->str);
+
+    free(head);
+    head = next;
+  }
 }
 
 char			**ft_strsplit(char const *str, char *delimiters) {
-
-  char **tab = NULL;
-  int totalNbrWords = 0;
-  int wordStartIndex = 0;
-  int i = 0;
-
-  if (!str)
-    return NULL;
-  if (!(totalNbrWords = ft_countwords(str, delimiters)) || !(tab = (char **)malloc(sizeof(char *) * totalNbrWords + 1)))
+  if (!str || !delimiters)
     return NULL;
 
-  for (int nbrSplitedWords = 0; nbrSplitedWords < totalNbrWords; nbrSplitedWords++) {
+  t_split_list *head = NULL;
+  t_split_list *cursor = NULL;
+  size_t totalNbrWords = 0;
 
+  for (size_t i = 0; str[i] != '\0';) {
     while (str[i] != '\0' && ft_strichr(delimiters, str[i]) >= 0)
       i++;
     
-    wordStartIndex = i;
-    while(str[i] != '\0' && ft_strichr(delimiters, str[i]) == -1)
-      i++;
-
-    if (wordStartIndex == i)
+    if (str[i] == '\0')
       break;
-    
-    if (!(tab[nbrSplitedWords] = ft_strndup(&str[wordStartIndex], i - wordStartIndex))) {
-      ft_freestrtabn(tab, nbrSplitedWords, TRUE);
+
+    totalNbrWords++;
+    t_split_list *newWord = NULL;
+    if (!(newWord = (t_split_list *)malloc(sizeof(t_split_list) * 1))) {
+      ft_freelist(head, TRUE);
       return NULL;
     }
-    
+
+    size_t wordStartIndex = i;
+    while (str[i] != '\0' && ft_strichr(delimiters, str[i]) < 0)
+      i++;
+
+    if (!(newWord->str = ft_strndup(&str[wordStartIndex], i - wordStartIndex))) {
+      ft_freelist(head, TRUE);
+      return NULL;
+    }
+
+    newWord->next = NULL;
+
+    if (!head)
+      head = newWord;
+    else
+      cursor->next = newWord;
+
+    cursor = newWord;
+  }
+
+  if (totalNbrWords <= 0)
+    return NULL;
+
+  char **tab = NULL;
+  if (!(tab = (char **)malloc(sizeof(char *) * totalNbrWords + 1))) {
+    ft_freelist(head, TRUE);
+    return NULL;
+  }
+
+  cursor = head;
+
+  for (size_t i = 0; i < totalNbrWords; i++) {
+    tab[i] = cursor->str;
+    cursor = cursor->next;
   }
 
   tab[totalNbrWords] = 0;
+
+  ft_freelist(head, FALSE);
 
   return tab;
 }

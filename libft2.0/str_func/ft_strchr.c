@@ -12,22 +12,17 @@
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, const unsigned char c)
 {
-	int i;
-
-	i = 0;
-	if (!s)
+  if (!s)
 		return (NULL);
-	while (s[i] != '\0')
-	{
-		if (s[i] == (unsigned char)c)
-			return ((char *)(&s[i]));
-		i++;
-	}
-	if (s[i] == (unsigned char)c)
-		return ((char *)(&s[i]));
-	return (NULL);
+  if (c == '\0')
+    return (char *)&s[ft_strlen(s)];
+
+	for (size_t i = 0; s[i] != '\0'; i++)
+		if (s[i] == c) return (char *)&s[i];
+
+	return NULL;
 }
 
 /*
@@ -41,7 +36,7 @@ char	*ft_strchr(const char *s, int c)
 ** -
 ** [const char *s]:
 ** la chaine de caracteres dans laquelle chercher.
-** [int c]:
+** [const unsigned char c]:
 ** le caractere a chercher.
 ** -
 ** RETOUR:

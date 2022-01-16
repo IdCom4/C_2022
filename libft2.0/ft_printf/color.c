@@ -60,7 +60,7 @@ t_flags		*get_color(t_flags *flags, char *str)
 		{
 			flags->color_index = i;
 			flags->option_len = close + 1;
-			ft_freestrtab(colors, NBR_COLORS, 1);
+			ft_freestrtabn(colors, NBR_COLORS, TRUE);
 			return (flags);
 		}
 		i++;
@@ -77,6 +77,6 @@ char		*get_color_code(t_flags *cursor)
 	if (!(color_codes = get_colorcode()))
 		ft_error();
 	result = ft_strdupe(color_codes[cursor->color_index]);
-	ft_freestrtab(color_codes, NBR_COLORS, 1);
+	ft_freestrtabn(color_codes, NBR_COLORS, TRUE);
 	return (result);
 }

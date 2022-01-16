@@ -28,14 +28,14 @@ int		ft_readfile(char *filename, char ***dest)
 	{
 		if (!(file_content = ft_reallocstrtab(file_content, nbrl, nbrl + 2)))
 		{
-			ft_freestrtab(file_content, nbrl, 1);
+			ft_freestrtabn(file_content, nbrl, TRUE);
 			return (-1);
 		}
 		file_content[nbrl] = line;
 		nbrl++;
 	}
 	if (ret == -1 && nbrl > 0)
-		file_content = ft_freestrtab(file_content, nbrl, 1);
+		file_content = ft_freestrtabn(file_content, nbrl, TRUE);
 	*dest = file_content;
 	return (nbrl);
 }

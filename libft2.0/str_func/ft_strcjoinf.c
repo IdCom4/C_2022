@@ -12,30 +12,35 @@
 
 #include "libft.h"
 
-char	*ft_strcjoinf(char const *s1, char const *s2, char c, int to_free)
+char	*ft_strcjoinf(char const *s1, char const *s2, char c, int toFree)
 {
-	char	*join;
-	int		i;
-	int		n;
+  if (!s1 || !s2)
+		return (NULL);
 
-	if (!s1 || !s2)
-		return (NULL);
-	i = ft_strichr((char *)s2, c);
-	i = (i < 0) ? ft_strlen(s2) : i;
-	if (!(join = ft_strnew(ft_strlen(s1) + i)))
-		return (NULL);
-	i = 0;
-	n = 0;
-	while (s1[n] != '\0')
-		join[i++] = s1[n++];
-	n = 0;
-	while (s2[n] != '\0' && s2[n] != c)
-		join[i++] = s2[n++];
-	if (to_free == 0 || to_free == 1)
-		free((to_free == 0) ? (char *)s1 : (char *)s2);
-	if (to_free >= 2)
-		free((char *)s1);
-	if (to_free >= 2)
-		free((char *)s2);
-	return (join);
+	char	*join;
+  size_t s1Len = ft_strlen(s1);
+	long joinEndIndex = ft_strichr((char *)s2, c);
+
+  if (joinEndIndex < 0)
+	  joinEndIndex = ft_strlen(s2);
+
+	if (!(join = ft_strnew(s1Len + joinEndIndex)))
+		return NULL;
+  
+	for (size_t j = 0; j < s1Len; j++)
+		join[j] = s1[j];
+
+  for (size_t j = 0; s2[j] != '\0' && s2[j] != c; j++)
+		join[s1Len + j] = s2[j];
+
+  join[s1Len + joinEndIndex] = '\0';
+  
+	if (toFree == FIRST || toFree == SECOND)
+		free((toFree == 0) ? (char *)s1 : (char *)s2);
+	else {
+    free((char *)s1);
+    free((char *)s2);
+  }
+		
+	return join;
 }

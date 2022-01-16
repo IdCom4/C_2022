@@ -12,21 +12,14 @@
 
 #include "libft.h"
 
-int		ft_strichr(const char *s, int c)
+int		ft_strichr(const char *s, const unsigned char c)
 {
-	int i;
+  if (c == '\0')
+    return !s ? 0 : ft_strlen(s);
 
-	i = 0;
-	if (!s)
-		return (-1);
-	while (s[i] != '\0')
-	{
-		if (s[i] == (unsigned char)c)
-			return (i);
-		i++;
-	}
-	if (s[i] == (unsigned char)c)
-		return (i);
+	for (size_t i = 0; s[i] != '\0'; i++)
+		if (s[i] == c) return (i);
+
 	return (-1);
 }
 
@@ -42,7 +35,7 @@ int		ft_strichr(const char *s, int c)
 ** -
 ** [const char *s]:
 ** un pointeur sur le debut de la chaine de caracteres.
-** [int c]:
+** [unsigned char c]:
 ** le caractere a trouver dans la chaine pointee par s.
 ** -
 ** RETOUR:

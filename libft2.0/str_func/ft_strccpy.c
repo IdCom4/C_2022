@@ -12,24 +12,17 @@
 
 #include "libft.h"
 
-char	*ft_strccpy(char *dest, const char *src, int c)
+char	*ft_strccpy(char *dest, const char *src, const unsigned char c)
 {
-	unsigned char	*uc_dest;
-	unsigned char	*uc_src;
-	unsigned int	i;
+  if (!dest || !src)
+		return NULL;
 
-	if (!dest || !src)
-		return (NULL);
-	i = 0;
-	uc_dest = (unsigned char *)dest;
-	uc_src = (unsigned char *)src;
-	while (uc_src[i] != (unsigned char)c && uc_src[i] != '\0')
-	{
-		uc_dest[i] = uc_src[i];
-		i++;
-	}
-	uc_dest[i] = '\0';
-	return ((char *)uc_dest);
+  size_t i;
+	for (i = 0; src[i] != c && src[i] != '\0'; i++)
+		dest[i] = src[i];
+
+	dest[i] = '\0';
+	return (dest);
 }
 
 /*
@@ -47,7 +40,7 @@ char	*ft_strccpy(char *dest, const char *src, int c)
 ** la chaine de caracteres dans laquelle copier.
 ** [const void *src]:
 ** la chaine de caracteres a copier.
-** [int c]:
+** [const unsigned char c]:
 ** le caractere arretant la copie si trouvé.
 ** -
 ** RETOUR:

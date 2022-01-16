@@ -88,7 +88,7 @@ char		*ft_decimal_preci(char *value, int n, int v_len)
 	if (neg)
 	{
 		fill = ft_strjoinfe("-", ft_strfill(ft_strnew(n), '0', n), 1);
-		value = ft_strdecale(value, 1, -1, v_len);
+		value = ft_strshift(value, 1, START, v_len);
 	}
 	else
 		fill = ft_strfill(ft_strnew(n), '0', n);

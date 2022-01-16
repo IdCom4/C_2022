@@ -12,20 +12,21 @@
 
 #include "libft.h"
 
-char	*ft_strnjoinf(char const *s1, char const *s2, size_t size, int toFree) {
-	char    *join;
-	int     i = 0;
-	size_t	n = 0;
+char	*ft_strnjoinf(char const *s1, char const *s2, size_t n, int toFree) {
+  if (!s1 || !s2)
+    return NULL;
 
-	if (!s1 || !s2 || !(join = malloc(sizeof(char) * (ft_strlen(s1) + size + 1))))
+	char    *join;
+
+	if (!(join = malloc(sizeof(char) * (ft_strlen(s1) + n + 1))))
 		return (NULL);
   
-	while (s1[n] != '\0')
-		join[i++] = s1[n++];
+	size_t i = 0;
+	for (size_t j = 0; s1[j] != '\0')
+		join[i++] = s1[j];
 
-	n = 0;
-	while (s2[n] != '\0' && n < size)
-		join[i++] = s2[n++];
+	for (size_t j = 0; j < n && s2[j] != '\0')
+		join[i++] = s2[j];
 
 	join[i] = '\0';
 

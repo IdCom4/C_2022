@@ -12,11 +12,13 @@
 
 #include "libft.h"
 
-char	*ft_strdupf(char *to_dup, char *to_free)
+char	*ft_strdupf(char *toDup, char *toFree)
 {
-	if (!to_dup)
+	if (!toDup)
 		return (NULL);
-	if (to_free)
-		free(to_free);
-	return (ft_strdup(to_dup));
+
+	if (toFree)
+		free(toFree);
+
+	return (ft_strdup(toDup));
 }

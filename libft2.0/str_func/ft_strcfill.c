@@ -12,17 +12,13 @@
 
 #include "libft.h"
 
-char	*ft_strcfill(char *dest, char *src, char c, int size)
+char	*ft_strcfill(char *dest, char *src, const unsigned char c, size_t len)
 {
-	int i;
+  if (!dest || !src)
+		return NULL;
 
-	if (!dest || !src)
-		return (NULL);
-	i = 0;
-	while (i < size && dest[i] && src[i])
-	{
+	for (size_t i = 0; i < len && dest[i] && src[i]; i++)
 		dest[i] = (dest[i] == c) ? src[i] : dest[i];
-		i++;
-	}
-	return (dest);
+
+	return dest;
 }

@@ -31,7 +31,7 @@ char	*ft_min_width(int min_width, t_flags *flags, char *val, int len)
 		&& flags->options[HTAG] == TRUE)
 			fill = ft_strjoinfe(ft_strndupe(val, 2), fill, 2);
 		if (!ft_isdigit(fill[0]) || fill[1] == 'x' || fill[1] == 'X')
-			val = ft_strdecale(val, (!ft_isdigit(fill[0])) ? 1 : 2, -1, len);
+			val = ft_strshift(val, (!ft_isdigit(fill[0])) ? 1 : 2, START, len);
 		val = ft_strjoinfe(fill, val, 2);
 	}
 	else

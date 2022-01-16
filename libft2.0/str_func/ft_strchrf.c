@@ -12,22 +12,21 @@
 
 #include "libft.h"
 
-char	*ft_strchrf(char *s, int c)
+char	*ft_strchrf(char *s, const unsigned char c)
 {
-	int		i;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	while (s[i] != '\0')
-	{
-		if (s[i] == (unsigned char)c)
-			return (ft_strndel(s, 1, i));
-		i++;
+  if (!s)
+		return NULL;
+  if (c == '\0') {
+    free(s);
+    return NULL;
+  }
+	
+	for (size_t i = 0; s[i] != '\0'; i++) {
+		if (s[i] == c)
+			return ft_strndel(s, START, i);
 	}
-	if (s[i] == (unsigned char)c)
-		return (ft_strndel(s, 1, i));
-	return (NULL);
+
+	return NULL;
 }
 
 /*

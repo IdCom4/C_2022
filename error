@@ -1,0 +1,48 @@
+In file included from /usr/include/stdlib.h:31,
+                 from testv2.c:3:
+testv2.c: In function ‘ft_strsplit’:
+testv2.c:129:25: error: invalid initializer
+  129 |     t_split_list next = NULL;
+      |                         ^~~~
+testv2.c:130:18: error: incompatible types when assigning to type ‘t_split_list’ {aka ‘struct split_list’} from type ‘t_split_list *’ {aka ‘struct split_list *’}
+  130 |     if (!(next = (t_split_list *)malloc(sizeof(t_split_list) * 1))) {
+      |                  ^
+testv2.c:131:7: error: too few arguments to function ‘ft_freelist’
+  131 |       ft_freelist(head);
+      |       ^~~~~~~~~~~
+testv2.c:100:7: note: declared here
+  100 | void  ft_freelist(t_split_list *head, int freeContent) {
+      |       ^~~~~~~~~~~
+testv2.c:139:15: error: invalid type argument of ‘->’ (have ‘t_split_list’ {aka ‘struct split_list’})
+  139 |     if (!(next->str = ft_strndup(&str[wordStartIndex], i - wordStartIndex))) {
+      |               ^~
+testv2.c:140:7: error: implicit declaration of function ‘fr_freelist’; did you mean ‘ft_freelist’? [-Werror=implicit-function-declaration]
+  140 |       fr_freelist(head, TRUE);
+      |       ^~~~~~~~~~~
+      |       ft_freelist
+testv2.c:144:9: error: invalid type argument of ‘->’ (have ‘t_split_list’ {aka ‘struct split_list’})
+  144 |     next->next = NULL;
+      |         ^~
+testv2.c:147:14: error: incompatible types when assigning to type ‘t_split_list *’ {aka ‘struct split_list *’} from type ‘t_split_list’ {aka ‘struct split_list’}
+  147 |       head = next;
+      |              ^~~~
+testv2.c:148:16: error: incompatible types when assigning to type ‘t_split_list *’ {aka ‘struct split_list *’} from type ‘t_split_list’ {aka ‘struct split_list’}
+  148 |       cursor = next;
+      |                ^~~~
+testv2.c:151:20: error: incompatible types when assigning to type ‘struct split_list *’ from type ‘t_split_list’ {aka ‘struct split_list’}
+  151 |     cursor->next = next;
+      |                    ^~~~
+testv2.c:152:14: error: incompatible types when assigning to type ‘t_split_list *’ {aka ‘struct split_list *’} from type ‘t_split_list’ {aka ‘struct split_list’}
+  152 |     cursor = next;
+      |              ^~~~
+testv2.c:168:26: error: expected ‘;’ before ‘}’ token
+  168 |     cursor = cursor->next
+      |                          ^
+      |                          ;
+  169 |   }
+      |   ~                       
+At top level:
+testv2.c:76:13: error: ‘ft_countwords’ defined but not used [-Werror=unused-function]
+   76 | static int  ft_countwords(char const *str, char *delimiters) {
+      |             ^~~~~~~~~~~~~
+cc1: all warnings being treated as errors

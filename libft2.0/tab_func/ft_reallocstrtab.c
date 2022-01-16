@@ -14,19 +14,16 @@
 
 char	**ft_reallocstrtab(char **tab, size_t old_size, size_t new_size)
 {
-	size_t	i;
 	char	**new;
 
 	if (new_size == 0 || !(new = ft_mallstrtab(new_size, 0)))
 		return (NULL);
 	if (!tab || old_size == 0)
 		return (new);
-	i = 0;
-	while (i < old_size)
-	{
+
+	for (int i = 0; i < old_size; i++)
 		new[i] = tab[i];
-		i++;
-	}
+
 	free(tab);
 	return (new);
 }

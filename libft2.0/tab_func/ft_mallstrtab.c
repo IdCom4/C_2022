@@ -12,39 +12,27 @@
 
 #include "libft.h"
 
-static void	*ft_free(char **tab, size_t n)
-{
-	size_t i;
-
-	i = 0;
-	while (i < n)
-	{
-		free(tab[i]);
-		tab[i] = NULL;
-		i++;
-	}
-	free(tab);
-	return (NULL);
-}
-
 void		*ft_mallstrtab(size_t tab_size, size_t str_size)
 {
 	char		**tab;
-	size_t		i;
 
-	i = 0;
-	if (!(tab = (char **)malloc(sizeof(char *) * tab_size)))
-		return (NULL);
-	while (i < tab_size)
-	{
-		if (str_size > 0)
-		{
-			if (!(tab[i] = ft_strnew(str_size)))
-				return (ft_free(tab, i));
+	if (!(tab = (char **)malloc(sizeof(char *) * tab_size)) || str_size <= 0)
+		return (tab);
+
+
+	for (int i = 0; i < tab_size; i++) {
+		if (str_size > 0) {
+
+			if (!(tab[i] = ft_strnew(str_size))) {
+        ft_freestrtabn(tab, i, TRUE);
+        return NULL;
+      }
+
+      tab[i][0] = '\0';
 		}
 		else
 			tab[i] = NULL;
-		i++;
 	}
+
 	return (tab);
 }

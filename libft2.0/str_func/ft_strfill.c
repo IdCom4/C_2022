@@ -14,13 +14,12 @@
 
 char	*ft_strfill(char *str, char c, size_t n)
 {
-	size_t i;
-
-	i = 0;
 	if (!str)
 		return (NULL);
-	while (i < n)
-		str[i++] = c;
-	str[i] = 0;
+
+	for (size_t i = 0; i < n; i++)
+		str[i] = c;
+
+	str[n] = 0;
 	return (str);
 }

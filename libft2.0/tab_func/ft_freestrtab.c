@@ -14,13 +14,11 @@
 
 void	ft_freestrtab(char **tab)
 {
-
 	if (!tab)
     return ;
-
-	size_t i = 0;
-	while (tab[i])
-		free(tab[i++]);
+	
+	for (size_t i = 0; tab[i]; i++)
+		free(tab[i]);
 
 	free(tab);
 }

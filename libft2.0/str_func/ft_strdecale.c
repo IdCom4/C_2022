@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdecale.c                                     :+:      :+:    :+:   */
+/*   ft_strshift.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: idcornua <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,30 +12,26 @@
 
 #include "libft.h"
 
-char	*ft_strdecale(char *str, int to_decale, int sens, int len)
+char	*ft_strshift(char *str, int shiftFromIndex, int shiftTo, size_t len)
 {
-	int i;
-
 	if (!str)
 		return (NULL);
-	len = (len < 0) ? ft_strlen(str) : len;
-	i = 0;
-	if (sens < 0)
-	{
-		while (str[i + to_decale])
-		{
-			str[i] = str[i + to_decale];
-			i++;
-		}
+
+  size_t i;
+	len = ((len < 0) ? ft_strlen(str) : len) - 1;
+
+	if (shiftTo == START) {
+		for (i = 0; str[i + shiftFromIndex] != '\0'; i++)
+			str[i] = str[i + shiftFromIndex];
+
+    str[i] = 0;
 	}
-	else
-	{
-		while ((len - 1) - to_decale >= 0)
-		{
-			str[len - 1] = str[(len - 1) - to_decale];
+  else {
+		while (len - shiftFromIndex >= 0) {
+			str[len] = str[len - shiftFromIndex];
 			len--;
 		}
 	}
-	str[((sens < 0) ? i : len - 1)] = ((sens < 0) ? 0 : -1);
+
 	return (str);
 }

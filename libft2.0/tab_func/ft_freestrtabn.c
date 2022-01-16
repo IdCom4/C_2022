@@ -25,7 +25,6 @@ void	ft_freestrtabn(char **tab, size_t size, int freeMainTab)
 
 	if (freeMainTab)
 		free(tab);
-
 }
 
 /*
