@@ -12,16 +12,11 @@
 
 #include "libft.h"
 
-char	*ft_char_replace(char *str, char to_find, char replace_by)
+char	*ft_char_replace(char *str, char toFind, char replaceBy)
 {
-	int i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == to_find)
-			str[i] = replace_by;
-		i++;
-	}
-	return (str);
+	for (size_t i = 0; str[i] != '\0'; i++)
+		if (str[i] == toFind) str[i] = replaceBy;
+
+	return str;
 }

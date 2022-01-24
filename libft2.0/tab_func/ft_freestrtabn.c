@@ -18,7 +18,7 @@ void	ft_freestrtabn(char **tab, size_t size, int freeMainTab)
 	if (!tab || size == 0)
 		return ;
 
-	for (int i = 0; i < size && tab[i]; i++) {
+	for (size_t i = 0; i < size && tab[i]; i++) {
 		free(tab[i]);
 		tab[i] = NULL;
 	}

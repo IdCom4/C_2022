@@ -20,7 +20,7 @@ void		*ft_mallstrtab(size_t tab_size, size_t str_size)
 		return (tab);
 
 
-	for (int i = 0; i < tab_size; i++) {
+	for (size_t i = 0; i < tab_size; i++) {
 		if (str_size > 0) {
 
 			if (!(tab[i] = ft_strnew(str_size))) {

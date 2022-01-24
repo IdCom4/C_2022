@@ -22,10 +22,10 @@ char	*ft_strnjoinf(char const *s1, char const *s2, size_t n, int toFree) {
 		return (NULL);
   
 	size_t i = 0;
-	for (size_t j = 0; s1[j] != '\0')
+	for (size_t j = 0; s1[j] != '\0';)
 		join[i++] = s1[j];
 
-	for (size_t j = 0; j < n && s2[j] != '\0')
+	for (size_t j = 0; j < n && s2[j] != '\0';)
 		join[i++] = s2[j];
 
 	join[i] = '\0';

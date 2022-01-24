@@ -12,28 +12,18 @@
 
 #include "libft.h"
 
-static int			get_value(char c, char *base)
+unsigned long long	ft_to_base_10_ull(char *nbr, char *baseFrom, int baseLen)
 {
-	int i;
+	unsigned long long	result = 0;
+	int nbrLen = ft_strnbrLen(nbr);
+	int power = ft_power(baseLen, nbrLen);
 
-	i = 0;
-	while (c != base[i] && base[i] != '\0')
-		i++;
-	return (i);
-}
-
-unsigned long long	ft_to_base_10_ull(char *nbr, char *base_from, int base_len)
-{
-	int					len;
-	unsigned long long	result;
-
-	result = 0;
-	len = ft_strlen(nbr);
-	while (*nbr != '\0')
-	{
-		len--;
-		result += get_value(*nbr, base_from) * ft_power(base_len, len);
-		nbr = nbr + 1;
+	while (*nbr) {
+		nbrLen--;
+		power /= baseLen;
+		result += ft_strichr(baseFrom, *nbr) * power;
+		nbr++;
 	}
+
 	return (result);
 }

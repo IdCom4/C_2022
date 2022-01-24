@@ -21,7 +21,7 @@ char	**ft_reallocstrtab(char **tab, size_t old_size, size_t new_size)
 	if (!tab || old_size == 0)
 		return (new);
 
-	for (int i = 0; i < old_size; i++)
+	for (size_t i = 0; i < old_size; i++)
 		new[i] = tab[i];
 
 	free(tab);

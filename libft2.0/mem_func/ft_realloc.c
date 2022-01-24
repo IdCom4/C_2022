@@ -12,13 +12,14 @@
 
 #include "libft.h"
 
-char	*ft_realloc(char *str, size_t new_size)
+char	*ft_realloc(char *str, size_t newSize)
 {
-	char	*tmp;
+	char	*newStr;
 
-	if (!str || !(tmp = ft_strnew(new_size)))
+	if (!str || !(newStr = ft_strnew(newSize)))
 		return (NULL);
-	ft_strcpy(tmp, str);
+	
+	ft_strcpy(newStr, str);
 	free(str);
-	return (tmp);
+	return (newStr);
 }

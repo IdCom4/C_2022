@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+t_bool	ft_isalpha(char c)
 {
 	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (1);
-	return (0);
+		return (TRUE);
+	return (FALSE);
 }
 
 /*
@@ -28,12 +28,12 @@ int	ft_isalpha(int c)
 ** -
 ** ARGUMENTS:
 ** -
-** [int c]:
-** un int representant le caractere ASCII a tester.
+** [char c]:
+** un char representant le caractere ASCII a tester.
 ** -
 ** RETOUR:
 ** -
-** [int]
-** ft_isalpha retourne 1 si le caractere est alphabetique, 0 sinon.
+** [t_bool]
+** ft_isalpha retourne TRUE si le caractere est alphabetique, FALSE sinon.
 ** -
 */

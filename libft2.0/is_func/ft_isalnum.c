@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
+t_bool	ft_isalnum(char c)
 {
 	if (ft_isalpha(c) || ft_isdigit(c))
-		return (1);
-	return (0);
+		return (TRUE);
+	return (FALSE);
 }
 
 /*
@@ -28,12 +28,12 @@ int	ft_isalnum(int c)
 ** -
 ** ARGUMENTS:
 ** -
-** [int c]:
-** un int representant le caractere ASCII a tester.
+** [char c]:
+** un char representant le caractere ASCII a tester.
 ** -
 ** RETOUR:
 ** -
-** [int]
-** ft_isalnum retourne 1 si le caractere est alphanumerique, 0 sinon.
+** [t_bool]
+** ft_isalnum retourne TRUE si le caractere est alphanumerique, FALSE sinon.
 ** -
 */

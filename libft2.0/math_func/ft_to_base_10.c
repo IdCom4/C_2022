@@ -22,22 +22,20 @@ static int		get_value(char c, char *base)
 	return (i);
 }
 
-long long		ft_to_base_10(char *nbr, char *base_from, int base_len)
+long long		ft_to_base_10(char *nbr, char *baseFrom, int baseLen)
 {
-	char				*nb;
-	int					len;
-	unsigned long long	result;
-	int					neg;
+	long long		result = 0;
+	int					sign = (nbr[0] == '-') ? -1 : 1;
+	char				*nb = (nbr[0] == '-') ? nbr + 1 : nbr;
+	int					nbrLen = ft_strlen(nb);
+	int					power = ft_power(baseLen, nbrLen);
 
-	result = 0;
-	neg = (nbr[0] == '-') ? -1 : 1;
-	nb = (nbr[0] == '-') ? nbr + 1 : nbr;
-	len = ft_strlen(nb);
-	while (*nb != '\0')
-	{
-		len--;
-		result += get_value(*nb, base_from) * ft_power(base_len, len);
-		nb = nb + 1;
+	while (*nb) {
+		nbrLen--;
+		power /= baseLen;
+		result += ft_strichr(baseFrom, *nb) * power;
+		nb++;
 	}
-	return ((long long)(result * neg));
+
+	return (result * sign);
 }

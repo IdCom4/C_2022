@@ -14,14 +14,13 @@
 
 int		ft_sqrt(int nb)
 {
-	int sqrt;
+	int sqrt = 0;
 
-	sqrt = 0;
 	if (nb < 0)
 		return (0);
+
 	while (sqrt * sqrt < nb && sqrt < 46341)
-	{
 		sqrt++;
-	}
+
 	return (sqrt);
 }

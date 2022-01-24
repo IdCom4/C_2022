@@ -12,28 +12,32 @@
 
 #include "libft.h"
 
-char	*ft_from_base_10(long long nbr, char *base_to, int base_len)
-{
-	char				*result;
-	int					len;
-	int					neg;
-	unsigned long long	nb;
+A
+10
+12
+1010
 
+
+char	*ft_from_base_10(long long nbr, char *baseTo, int baseLen)
+{
 	if (nbr == 0)
-		return (ft_strdup("0"));
+		return (ft_strndup(&baseTo[0], 1));
+
+	char								*result = NULL;
+	int									len = 0;
+	int									sign = (nbr < 0) ? 1 : 0;
+	unsigned long long	nb = (nbr < 0) ? -nbr : nbr;
+
 	if (!(result = ft_strnew(0)))
 		return (NULL);
-	neg = (nbr < 0) ? 1 : 0;
-	nb = (nbr < 0) ? -nbr : nbr;
-	len = 0;
-	while (nb > 0)
-	{
+
+	while (nb > 0) {
 		result = ft_strjoinf(result, " ", 0);
-		result[len] = base_to[nb % base_len];
-		nb /= base_len;
+		result[len] = baseTo[nb % baseLen];
+		nb /= baseLen;
 		len++;
 	}
-	if (neg)
+	if (sign)
 		result = ft_strjoinf(result, "-", 0);
 	return (ft_strrev(result));
 }

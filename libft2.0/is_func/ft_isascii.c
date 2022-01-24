@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+t_bool	ft_isascii(char c)
 {
 	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+		return (TRUE);
+	return (FALSE);
 }
 
 /*
@@ -28,12 +28,12 @@ int	ft_isascii(int c)
 ** -
 ** ARGUMENTS:
 ** -
-** [int c]:
-** un int representant l'index a tester.
+** [char c]:
+** un char representant l'index a tester.
 ** -
 ** RETOUR:
 ** -
-** [int]
-** ft_isascii retourne 1 si c  est uun caractere ASCII, 0 sinon.
+** [t_bool]
+** ft_isascii retourne TRUE si c est un caractere ASCII, FALSE sinon.
 ** -
 */

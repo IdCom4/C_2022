@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+t_bool	ft_isdigit(char c)
 {
 	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+		return (TRUE);
+	return (FALSE);
 }
 
 /*
@@ -28,12 +28,12 @@ int	ft_isdigit(int c)
 ** -
 ** ARGUMENTS:
 ** -
-** [int c]:
-** un int representant le caractere ASCII a tester.
+** [char c]:
+** un char representant le caractere ASCII a tester.
 ** -
 ** RETOUR:
 ** -
-** [int]
-** ft_isdigit retourne 1 si le caractere est un chiffre, 0 sinon.
+** [t_bool]
+** ft_isdigit retourne TRUE si le caractere est un chiffre, FALSE sinon.
 ** -
 */

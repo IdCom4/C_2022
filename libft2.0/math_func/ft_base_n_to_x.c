@@ -12,12 +12,10 @@
 
 #include "libft.h"
 
-char	*ft_base_n_to_x(char *nbr, char *base_from, char *base_to)
+char	*ft_base_n_to_x(char *nbr, char *baseFrom, char *baseTo)
 {
-	int bfl;
-	int btl;
+	int baseFromLen = ft_strlen(baseFrom);
+	int baseToLen = ft_strlen(baseTo);
 
-	bfl = ft_strlen(base_from);
-	btl = ft_strlen(base_to);
-	return (ft_from_base_10(ft_to_base_10(nbr, base_from, bfl), base_to, btl));
+	return (ft_from_base_10(ft_to_base_10(nbr, baseFrom, baseFromLen), baseTo, baseToLen));
 }

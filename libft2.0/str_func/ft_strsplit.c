@@ -12,84 +12,81 @@
 
 #include "libft.h"
 
-static int		ft_nbrwords(char const *s, char *charset)
-{
-	int		nbr_word;
-	int		i;
+static linkedList *ft_storewordinnewlink(const char *str, size_t begin, size_t end) {
+  char *newWord = NULL;
+  size_t newWordLen = end - begin;
+  linkedList *newLink = NULL;
 
-	nbr_word = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		while (s[i] && ft_strichr(charset, s[i]) != -1)
-			i++;
-		if (s[i] != '\0')
-			nbr_word++;
-		while (s[i] && ft_strichr(charset, s[1]) == -1)
-			i++;
-	}
-	return (nbr_word);
+  if (!(newWord = ft_strndup(&str[begin], newWordLen)) || !(newLink = ft_lstnew(newWord, newWordLen)) ) {
+    if (newWord) free(newWord);
+    return NULL;
+  }
+
+  return newLink;
 }
 
-static char		*ft_newword(char const *s, char *charset)
-{
-	char	*str;
-	int		i;
+static size_t     ft_getnextdelimiterIndex(const char *str, char *delimiters, size_t i) {
+  while (str[i] != '\0' && ft_strichr(delimiters, str[i]) >= 0)
+      i++;
 
-	i = 0;
-	while (s[i] && ft_strichr(charset, s[i]) == -1)
-		i++;
-	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	i = 0;
-	while (s[i] && ft_strichr(charset, s[i]))
-	{
-		str[i] = s[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+  return i;
 }
 
-static char		**ft_nullendtab(char **tab, int index)
-{
-	tab[index] = 0;
-	return (tab);
+static size_t     ft_getnextnondelimiterIndex(const char *str, char *delimiters, size_t i) {
+  while (str[i] != '\0' && ft_strichr(delimiters, str[i]) < 0)
+      i++;
+
+  return i;
 }
 
-static int		ft_test_and_set(int *n, int *i, char const *s, char *charset)
-{
-	if (!s || !charset)
-		return (0);
-	*n = 0;
-	*i = 0;
-	return (1);
-}
+char              **ft_strsplit(char const *str, char *delimiters) {
+  if (!str || !delimiters)
+    return NULL;
 
-char			**ft_strsplit(char const *s, char *chars)
-{
-	char	**tab;
-	int		index_w;
-	int		i;
+  linkedList *head = NULL;
+  linkedList *cursor = NULL;
+  size_t totalNbrWords = 0;
 
-	if (ft_test_and_set(&i, &index_w, s, chars) == 0)
-		return (NULL);
-	if (!(tab = (char **)malloc(sizeof(char *) * (ft_nbrwords(s, chars) + 1))))
-		return (NULL);
-	if (ft_nbrwords(s, chars) == 0)
-		return (ft_nullendtab(tab, 0));
-	while (s[i] != '\0')
-	{
-		while (s[i] && ft_strichr(chars, s[i]) != -1)
-			i++;
-		if (s[i] != '\0')
-		{
-			if (!(tab[index_w] = ft_newword((char*)(&s[i]), chars)))
-				return (ft_freestrtabn(tab, index_w, TRUE));
-			index_w++;
-		}
-		while (s[i] && ft_strichr(chars, s[i]) == -1)
-			i++;
-	}
-	return (ft_nullendtab(tab, index_w));
+  for (size_t i = 0; str[i] != '\0';) {
+    i = ft_getnextdelimiterIndex(str, delimiters, i);
+    
+    if (str[i] == '\0')
+      break;
+
+    totalNbrWords++;
+
+    size_t wordStartIndex = i;
+    i = ft_getnextnondelimiterIndex(str, delimiters, i);
+
+    linkedList *newLink = NULL;
+
+    if (!(newLink = ft_storewordinnewlink(str, wordStartIndex, i))) {
+      ft_lstdel(&head, &ft_del);
+      return NULL;
+    }
+
+    ft_lstpush(&head, &cursor, newLink);
+  }
+
+  if (totalNbrWords <= 0)
+    return NULL;
+
+  char **tab = NULL;
+  if (!(tab = (char **)malloc(sizeof(char *) * totalNbrWords + 1))) {
+    ft_lstdel(&head, &ft_del);
+    return NULL;
+  }
+
+  cursor = head;
+
+  for (size_t i = 0; i < totalNbrWords; i++) {
+    tab[i] = (char *)cursor->content;
+    cursor = cursor->next;
+  }
+
+  tab[totalNbrWords] = 0;
+
+  ft_lstdel(&head, &ft_dummydel);
+
+  return tab;
 }

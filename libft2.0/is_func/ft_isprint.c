@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-int	ft_isprint(int c)
+t_bool	ft_isprint(char c)
 {
 	if (c >= 32 && c <= 126)
-		return (1);
-	return (0);
+		return (TRUE);
+	return (FALSE);
 }
 
 /*
@@ -28,12 +28,12 @@ int	ft_isprint(int c)
 ** -
 ** ARGUMENTS:
 ** -
-** [int c]:
-** un int representant le caractere ASCII a tester.
+** [char c]:
+** un char representant le caractere ASCII a tester.
 ** -
 ** RETOUR:
 ** -
-** [int]
-** ft_isprint retourne 1 si le caractere est affichable, 0 sinon.
+** [t_bool]
+** ft_isprint retourne TRUE si le caractere est affichable, FALSE sinon.
 ** -
 */
