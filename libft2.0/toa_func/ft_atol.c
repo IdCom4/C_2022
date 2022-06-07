@@ -12,28 +12,33 @@
 
 #include "libft.h"
 
-long long	ft_atol(const char *nptr)
+long long	ft_atol(const char *str)
 {
-	int			i;
-	long long	result;
-	int			sign;
+	int				i = 0;
+	int				sign = 1;
+	long long	result = 0;
 
-	result = 0;
-	sign = 1;
-	i = 0;
-	while (nptr[i] != '\0'
-		&& ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32))
+	// skip all non numeric chars
+	while (str[i] != '\0'
+		&& ((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
 		i++;
-	if (nptr[i] == '-')
+
+	// then check for a sign and store the data if there is
+	if (str[i] == '-')
 		sign = -1;
-	else if (nptr[i] == '+')
+	else if (str[i] == '+')
 		i++;
+
+	// skip it if we found it
 	i = (sign == 1) ? i : i + 1;
-	while (nptr[i] != '\0' && nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		result = (result * 10) + (nptr[i] - 48);
+
+	// now parse the value as long as chars are numbers
+	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9') {
+		result = (result * 10) + (str[i] - 48);
 		i++;
 	}
+	
+	// return the signed parsed value
 	return (result * sign);
 }
 
@@ -44,7 +49,7 @@ long long	ft_atol(const char *nptr)
 ** ft_atoi converti une chaine de caracteres en sa valeur en long long.
 ** -
 ** ARGUMENTS:
-** [const char *nptr]:
+** [const char *str]:
 ** un pointeur sur le debut de la chaine de caracteres a convertir.
 ** -
 ** RETOUR:

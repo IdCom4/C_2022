@@ -30,6 +30,7 @@ void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 		src2++;
 		n--;
 	}
+	
 	return (NULL);
 }
 

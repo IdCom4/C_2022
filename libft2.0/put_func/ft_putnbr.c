@@ -12,15 +12,17 @@
 
 #include "libft.h"
 
-void	ft_putnbr(int n)
-{
-	unsigned int nb;
+void	ft_putnbr(int n) {
 
+	// if n is negative, print its sign
 	if (n < 0)
 		ft_putchar('-');
-	nb = (n < 0) ? -n : n;
-	if (nb >= 10)
-	{
+	
+	// then anyway make it positive
+	unsigned int  nb = (n < 0) ? -n : n;
+
+	// then print it recursively
+	if (nb >= 10) {
 		ft_putnbr(nb / 10);
 		ft_putnbr(nb % 10);
 	}

@@ -12,11 +12,8 @@
 
 #include "libft.h"
 
-char	*ft_strnew(size_t len)
-{
-	char *new;
-
-	return((new = (char *)malloc(sizeof(char) * (len + 1))));
+char	*ft_strnew(size_t len){
+	return((char *)malloc(sizeof(char) * (len + 1)));
 }
 
 /*
