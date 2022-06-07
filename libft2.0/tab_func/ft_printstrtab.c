@@ -12,28 +12,17 @@
 
 #include "libft.h"
 
-void	ft_printstrtab(char **tab, int size)
-{
-	int i;
+void	ft_printstrtab(char **tab, int size) {
 
-	if (!tab)
-		return ;
-	i = 0;
-	if (size >= 0)
-	{
-		while (i < size)
-		{
-			ft_putstr(tab[i]);
-			ft_putchar('\n');
-			i++;
-		}
-		return ;
-	}
-	while (tab[i])
-	{
-		ft_putstr(tab[i]);
-		ft_putchar('\n');
-		i++;
+	if (!tab) return ;
+
+	for (size_t i = 0; i < size; i++) {
+		const char *line = NULL;
+
+		if (!(line = ft_strjoin(tab[i], "\n"))) return ;
+		
+		ft_putstr(line);
+		free(line);
 	}
 }
 

@@ -20,16 +20,24 @@ void	ft_printinttab(int *tab, size_t size, int print_mode) {
 		if (print_mode == 0) {
 			// "x) [xxxxx]\n"
 			const char *tabLineIndex = ft_strjoinf(ft_itoa(i), ") [", FIRST);
+			if (!tabLineIndex) return ;
+
 			const char *tabLineContent = ft_strjoinf(ft_itoa(tab[i]), "]\n", FIRST);
+			if (!tabLineContent) return ;
+
 			const char *tabLine = ft_strjoinf(tabLineIndex, tabLineContent, ALL);
+			if (!tabLine) return ;
 
 			ft_putstr(tabLine);
+			free(tabLine);
 		}
 		else {
 			// xxxxx<, >\n
 			const char *tabLine = ft_strjoinf(ft_itoa(tab[i]), (i < size - 1) ? ", " : "\n", FIRST);
+			if (!tabLine) return ;
 
 			ft_putstr(tabLine);
+			free(tabLine);
 		}
 	}
 }

@@ -14,32 +14,32 @@
 
 #include "libft.h"
 
-int		ft_readfileV1(const char *filename, char ***dest)
-{
+int		ft_readfileV1(const char *filename, char ***dest) {
 	int		fd;
-	int		nbrl;
+	int		nbrl = 0;
 	int		ret;
 	char	*line;
-	char	**file_content;
+	char	**file_content = NULL;
 
 	if ((fd = open(filename, O_RDONLY)) <= 0)
 		return (-1);
-	nbrl = 0;
-	file_content = NULL;
-	while ((ret = ft_getnextline(fd, &line)) > 0)
-	{
-		if (!(file_content = ft_reallocstrtab(file_content, nbrl, nbrl + 2)))
-		{
+
+	while ((ret = ft_getnextline(fd, &line)) > 0) {
+
+		if (!(file_content = ft_reallocstrtab(file_content, nbrl, nbrl + 2))) {
 			ft_freestrtabn(file_content, nbrl, TRUE);
 			return (-1);
 		}
+
 		file_content[nbrl] = line;
 		nbrl++;
 	}
+
 	if (ret == -1 && nbrl > 0) {
     ft_freestrtabn(file_content, nbrl, TRUE);
     file_content = NULL;
   }
+
 	*dest = file_content;
 	return (nbrl);
 }
