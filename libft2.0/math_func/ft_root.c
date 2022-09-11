@@ -35,7 +35,7 @@ double ft_root(int nthRoot, double nbr){
   root -= stepSize;
 
   while (stepSize >= MATH_PRECISION) {
-		// an untested alternative could be to start root to 1.0 and to as follow:
+		// an untested alternative could be to start root to 1.0 and do as follow:
 		// root -= (ft_di_power(root, nthRoot) - nbr) / ( nthRoot * ft_di_power(root, (nthRoot - 1)) );
 
 		stepSize *= 0.5;

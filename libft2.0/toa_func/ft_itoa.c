@@ -14,25 +14,33 @@
 
 char	*ft_itoa(int n)
 {
-	char			*str;
-	int				size;
 	unsigned int	nb;
+	char					*str;
+	int						size = ft_intlen(n);
 
-	size = ft_intlen(n);
+	// allocate memory, and return NULL if failure
 	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
+	
+	// check for zero and negative values
 	if (n == 0)
 		str[0] = '0';
 	if (n < 0)
 		str[0] = '-';
+	
+	// end the string
 	str[size] = '\0';
+
+	// set number as positive
 	nb = (n < 0) ? -n : n;
-	while (nb != 0)
-	{
+
+	// and parse it, number by number
+	while (nb != 0) {
 		str[size - 1] = (nb % 10) + 48;
 		nb /= 10;
 		size--;
 	}
+
 	return (str);
 }
 

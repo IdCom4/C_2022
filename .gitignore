@@ -1,3 +1,7 @@
 .vscode/
 *.out
+<<<<<<< HEAD
 *.exe
+=======
+*.exe
+>>>>>>> dc8bebea07246af9a0ce84e30ec5f0c71da9ef26

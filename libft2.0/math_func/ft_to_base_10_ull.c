@@ -12,8 +12,7 @@
 
 #include "libft.h"
 
-unsigned long long	ft_to_base_10_ull(char *nbr, char *baseFrom, int baseLen)
-{
+unsigned long long	ft_to_base_10_ull(char *nbr, char *baseFrom, int baseLen) {
 	unsigned long long	result = 0;
 	int nbrLen = ft_strnbrLen(nbr);
 	int power = ft_power(baseLen, nbrLen);

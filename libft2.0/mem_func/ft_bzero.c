@@ -25,12 +25,12 @@ void	ft_bzero(void *s, size_t n)
 ** -
 ** DESCRIPTION:
 ** -
-** ft_bzero fill the pointed by s memory location with 0.
+** ft_bzero fill the memory location pointed by s with 0.
 ** -
 ** ARGUMENTS:
 ** -
 ** [void *s]:
-** the pointer to the the memory zone to zero fill.
+** the pointer to the memory zone to zero fill.
 ** [size_t n]:
 ** the length of the memory space to zero fill.
 ** -

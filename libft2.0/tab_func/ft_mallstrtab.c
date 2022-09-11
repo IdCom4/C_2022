@@ -12,24 +12,26 @@
 
 #include "libft.h"
 
-void		*ft_mallstrtab(size_t tab_size, size_t str_size)
-{
-	char		**tab;
+void		*ft_mallstrtab(size_t tab_size, const size_t str_size) {
+	
+	char		**tab = NULL;
+	// mem alloc tab, and return NULL if failure
+	if (!(tab = (char **)malloc(sizeof(char *) * tab_size)))
+		return (NULL);
 
-	if (!(tab = (char **)malloc(sizeof(char *) * tab_size)) || str_size <= 0)
-		return (tab);
-
-
+	// for each tab entry
 	for (size_t i = 0; i < tab_size; i++) {
-		if (str_size > 0) {
-
+		// if an str_size is specified alloc it
+		if (str_size) {
+			// if failure free what's allocated & return NULL
 			if (!(tab[i] = ft_strnew(str_size))) {
-        ft_freestrtabn(tab, i, TRUE);
-        return NULL;
-      }
+				ft_freestrtabn(tab, i, TRUE);
+				return NULL;
+			}
 
-      tab[i][0] = '\0';
+			tab[i][0] = '\0';
 		}
+		// else set it to NULL
 		else
 			tab[i] = NULL;
 	}

@@ -18,6 +18,12 @@
 # include <fcntl.h>
 # include "ft_printf/ft_printf.h"
 
+// define limits
+# define INT_MAX 2147483647
+# define INT_MIN -2147483646
+# define LLONG_MAX 9223372036854775807
+# define LLONG_MIN -9223372036854775806
+
 # define BUFF_SIZE 50
 # define START 1
 # define END -1

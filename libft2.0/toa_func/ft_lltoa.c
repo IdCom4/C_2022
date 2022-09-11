@@ -14,25 +14,33 @@
 
 char	*ft_lltoa(long long n)
 {
-	char				*str;
-	int					size;
 	unsigned long long	nb;
+	char								*str = NULL;
+	int									size = ft_lllen(n, 0);
 
-	size = ft_lllen(n, 0);
+	// allocate memory, and return NULL if failure
 	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
+	
+	// check for zero and negative values
 	if (n == 0)
 		str[0] = '0';
 	if (n < 0)
 		str[0] = '-';
+	
+	// end the string
 	str[size] = '\0';
+
+	// set number as positive
 	nb = (n < 0) ? -n : n;
-	while (nb != 0)
-	{
+
+	// and parse it, number by number
+	while (nb != 0) {
 		str[size - 1] = (nb % 10) + 48;
 		nb /= 10;
 		size--;
 	}
+
 	return (str);
 }
 

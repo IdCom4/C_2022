@@ -33,14 +33,11 @@ double  ft_log(unsigned int nbr) {
 
   log -= stepSize;
 
-  // here we know that log is to high from less than 1
+  // here we know that log is to high of less than 1
   while (stepSize >= MATH_PRECISION) {
     stepSize *= 0.5;
 
     double powerResult = ft_d_power(10, log);
-    printf(" pr: %.20f\n", powerResult);
-    printf(" log: %.20f\n", log);
-    printf(" <: %d\n", powerResult < (double)nbr);
 
     if (powerResult == (double)nbr)
       return powerResult;

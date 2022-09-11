@@ -40,6 +40,7 @@ int ft_readfile(const char *fileName, char ***fileContentDest) {
 
   size_t i = 0;
   size_t nbrLine = 0;
+
   // iterate through the list, copy the result into a single string
   // and create a boundary list containing the limits of every line
   while (head) {
@@ -63,9 +64,11 @@ int ft_readfile(const char *fileName, char ***fileContentDest) {
         newBlLink = NULL;
       }
       else if (((char *)head->content)[j] == '\r') {
-        if (j < head->contentSize - 1 && ((char *)head->content)[j + 1] == '\n') // line end in the same link
+        // if true, means line end in the same link
+        if (j < head->contentSize - 1 && ((char *)head->content)[j + 1] == '\n')
           continue;
-        else if (j == head->contentSize - 1 && (!head->next || ((char *)head->next->content)[0] == '\n')) // line end across 2 links
+        // else means line end across 2 links
+        else if (j == head->contentSize - 1 && (!head->next || ((char *)head->next->content)[0] == '\n'))
           break;
       }
   

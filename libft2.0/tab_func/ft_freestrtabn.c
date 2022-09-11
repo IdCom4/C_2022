@@ -12,11 +12,9 @@
 
 #include "libft.h"
 
-void	ft_freestrtabn(char **tab, size_t size, int freeMainTab)
-{
+void	ft_freestrtabn(char **tab, size_t size, int freeMainTab) {
 
-	if (!tab || size == 0)
-		return ;
+	if (!tab || size == 0) return ;
 
 	for (size_t i = 0; i < size && tab[i]; i++) {
 		free(tab[i]);

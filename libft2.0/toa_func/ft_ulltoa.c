@@ -15,20 +15,24 @@
 char	*ft_ulltoa(unsigned long long n)
 {
 	char			*str;
-	int				size;
+	int				size = ft_lllen((long long)n, 1);
 
-	size = ft_lllen((long long)n, 1);
+	// allocate memory, and return NULL if failure
 	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	if (n == 0)
-		str[0] = '0';
+
+	// check for zero value
+	if (n == 0) str[0] = '0';
+
+	// end the string
 	str[size] = '\0';
-	while (n != 0)
-	{
+
+	while (n != 0) {
 		str[size - 1] = (n % 10) + 48;
 		n /= 10;
 		size--;
 	}
+
 	return (str);
 }
 

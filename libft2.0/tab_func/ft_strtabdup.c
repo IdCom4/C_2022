@@ -14,16 +14,26 @@
 
 char	**ft_strtabdup(char **tab, size_t tab_size)
 {
-	char	**dup;
+	char	**dup = NULL;
 
-	if (tab_size == 0 || !tab || !(dup = (char **)ft_mallstrtab(tab_size, 0)))
+	// if there is no tab to dup, or that the mem alloc failed, return NULL
+	if (!tab_size || !tab || !(dup = (char **)ft_mallstrtab(tab_size, 0)))
 		return (NULL);
 
 	for (size_t n = 0; n < tab_size; n++) {
-		if (!(dup[n] = ft_strdup(tab[n])))
-			return (ft_freestrtabn(dup, n, TRUE));
+		// if the dup mem alloc fail
+		if (!(dup[n] = ft_strdup(tab[n]))) {
+			// free what we already allocated
+			ft_freestrtabn(dup, n, TRUE);
+
+			// and return NULL
+			return (NULL);
+		}
 	}
 
-  dup[tab_size] = 0;
+	// NULL end the tab 
+  dup[tab_size] = NULL;
+
+	// and return it
 	return (dup);
 }

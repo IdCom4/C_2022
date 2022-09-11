@@ -10,13 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-A
-10
-12
-1010
-
+#include "libft.h";
 
 char	*ft_from_base_10(long long nbr, char *baseTo, int baseLen)
 {
